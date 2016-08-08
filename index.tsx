@@ -16,14 +16,14 @@ export interface MinimalNavigator {
     pushPage(route: ToolbarRoute): void;
 }
 
-export interface ToolbarRouteProps {    
+export interface ToolbarRouteProps {
     navigator: MinimalNavigator;
 }
 
 export interface ToolbarRoute {
     id: string;
     title: string | ((props: ToolbarRouteProps) => string);
-    content(props: ToolbarRouteProps): React.ReactNode;    
+    content(props: ToolbarRouteProps): React.ReactNode;
 }
 
 export interface ToolbarNavigatorProps {
@@ -37,27 +37,31 @@ function getTitle(route: ToolbarRoute, props: ToolbarRouteProps): string {
 
 export class ToolbarNavigator extends React.Component<ToolbarNavigatorProps, {}> {
 
-    renderPage(route: ToolbarRoute, navigator: MinimalNavigator) {    
+    renderPage(route: ToolbarRoute, navigator: MinimalNavigator) {
         return (
-            <Page key={route.id}>
-                
-                <div>
-                    <Toolbar>
+            <Page key={route.id}
+            renderToolbar={
+              () => <Toolbar>
                         <div className="left">
                             <BackButton>Back</BackButton>
                         </div>
                         <div className="center">
                             {getTitle(route, { navigator })}
-                        </div>                        
+                        </div>
                         <div className="right">
                             <span style={{ padding: 8 }}>
                                 <Icon icon="ion-gear-a" />{"\u00a0" /*force text-like vertical alignment*/}
                             </span>
-                        </div>                    
+                        </div>
                     </Toolbar>
-                    {route.content({ navigator })}
+            }
+
+            >
+
+                <div>
+                                        {route.content({ navigator })}
                 </div>
-            
+
             </Page>
         );
     }
@@ -86,8 +90,8 @@ export const ProviderList: ToolbarRoute = {
                         {name}
                     </ListItem>
                 )}
-            />            
-        ); 
+            />
+        );
     }
 }
 
