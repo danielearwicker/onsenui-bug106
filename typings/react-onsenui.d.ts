@@ -4,17 +4,18 @@ declare module "react-onsenui" {
     import * as React from "react";
 
     export interface PageProps  {
+      renderToolbar?: () => JSX.Element;
     }
 
     export class Page extends React.Component<PageProps, {}> {
     }
-    
+
     export interface ButtonProps {
         disabled?: boolean;
         ripple?: boolean;
         onClick?: () => void;
     }
-    
+
     export class Button extends React.Component<ButtonProps, {}> {
     }
 
@@ -29,7 +30,7 @@ declare module "react-onsenui" {
         animation?: "slide" | "lift" | "fade" | "none";
         animationOptions?: string;
     }
-    
+
     export class Navigator extends React.Component<NavigatorProps, {}> {
         pushPage(route: any): void;
         popPage(): void;
@@ -52,7 +53,7 @@ declare module "react-onsenui" {
         renderFooter?: () => JSX.Element;
     }
 
-    export class List extends React.Component<ListProps, {}> {        
+    export class List extends React.Component<ListProps, {}> {
     }
 
     export interface ListItemProps {
@@ -68,7 +69,7 @@ declare module "react-onsenui" {
         icon: string;
     }
 
-    export class Icon extends React.Component<IconProps, {}> {        
+    export class Icon extends React.Component<IconProps, {}> {
     }
 
     export interface InputChangeEvent {
@@ -88,6 +89,6 @@ declare module "react-onsenui" {
         disabled?: boolean;
     }
 
-    export class Input extends React.Component<InputProps, {}> {        
+    export class Input extends React.Component<InputProps, {}> {
     }
 }
